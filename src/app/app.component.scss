@@ -1,0 +1,16 @@
+:host {
+    display: block;
+}
+
+@import '../style/index.scss';
+
+.app {
+    box-sizing: border-box;
+    background-color: $bg-color;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
