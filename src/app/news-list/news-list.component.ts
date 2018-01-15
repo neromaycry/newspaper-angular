@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { News } from '../core/models/news.model';
 
 @Component({
     selector: 'my-news-list',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./news-list.component.scss']
 })
 export class NewsListComponent implements OnInit {
+    @Input() newsList: News[];
 
     ngOnInit() {
 

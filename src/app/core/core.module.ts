@@ -1,11 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { Optional, SkipSelf, NgModule } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
+import { ApiService } from './services/api.service';
+import { reducers, metaReducers } from './reducers/reducers';
 
 @NgModule({
-    imports: [CommonModule],
+    imports: [
+        CommonModule,
+        StoreModule.forRoot(reducers, { metaReducers })
+    ],
     declarations: [],
     exports: [],
-    providers: []
+    providers: [
+        ApiService
+    ]
 })
 export class CoreModule {
 

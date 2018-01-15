@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 // import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { NewsListModule } from './news-list';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     CoreModule,
     NewsListModule,
     routing
