@@ -27,8 +27,6 @@ export class NewsListContainer implements OnInit {
         this.apiService.loadNewsListToStore();
 
         this.newsList$ = this.store.select(newsReducer.getNews);
-        // console.log(this.newsList$);
-
     }
 
     ngOnInit() {

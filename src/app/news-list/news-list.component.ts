@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { News } from '../core/models/news.model';
 
 @Component({
@@ -9,8 +10,15 @@ import { News } from '../core/models/news.model';
 export class NewsListComponent implements OnInit {
     @Input() newsList: News[];
 
-    ngOnInit() {
+    constructor(private sanitizer: DomSanitizer) {
 
+    }
+
+    ngOnInit() {
+    }
+
+    getImg(image) {
+        return this.sanitizer.bypassSecurityTrustStyle(`url(${image})`);
     }
 
 }

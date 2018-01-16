@@ -1,4 +1,4 @@
-import {News} from '../models/news.model';
+import { News } from '../models/news.model';
 
 export interface AppState {
     newsState: NewsState;
