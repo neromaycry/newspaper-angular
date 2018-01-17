@@ -4,21 +4,53 @@ $title-text-color: #424242;
 $news-info-text-color: #9e9e9e;
 $news-item-height: 80px;
 $news-item-width: 80px;
+$news-item-bg-color: #fafafa;
 $news-img-height: 56px;
 $news-img-width: 56px;
 
 .newslist-container {
     position: relative;
+    overflow: scroll;
 }
 
-.newslist-item {
+.newslist-header {
     width: 100%;
-    height: $news-item-height;
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
+    height: 64px;
     border-bottom: solid 1px $divider-color;
+    position: fixed;
+    background-color: #FFF;
+    top: 0;
+    z-index: 10;
+
+    .greetings {
+        font-size: 14px;
+        margin-left: $common-margin * 2;
+        margin-top: $common-margin;
+    }
+
+    .username {
+        font-size: 24px;
+        margin-left: $common-margin * 2;
+        margin-top: $common-margin / 2;
+    }
 }
+
+.newslist-container {
+    position: relative;
+    padding-top: 32px;
+
+    .newslist-item {
+        width: 100%;
+        height: $news-item-height;
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        border-bottom: solid 1px $divider-color;
+        background-color: $news-item-bg-color;
+    }
+}
+
+
 
 .item-img-container {
     width: $news-item-width;

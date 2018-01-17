@@ -1,14 +1,25 @@
 <div class="newslist-container">
-    <div *ngFor="let n of newsList">
-        <div class="newslist-item">
-            <div class="item-img-container">
-                <div class="item-img" [style.background-image]="getImg(n.img_url)"></div>
-            </div>
-            <div class="item-news-container">
-                <div class="title">{{ n.title }}</div>
-                <div class="news-info">
-                    <div class="time">{{ n.time }}</div>
-                    <div class="source">{{ n.source }}</div>
+    <div class="newslist-header">
+        <div class="greetings">Good Morning!</div>
+        <div class="username">neromaycry</div>
+    </div>
+    <div class="newslist-container" infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollUpDistance]="1.5"
+    [infiniteScrollThrottle]="50"
+    (scrolled)="onScrollDown()"
+    (scrolledUp)="onScrollUp()">
+        <div *ngFor="let n of newsList">
+            <div class="newslist-item">
+                <div class="item-img-container">
+                    <div class="item-img" [style.background-image]="getImg(n.img_url)"></div>
+                </div>
+                <div class="item-news-container">
+                    <div class="title">{{ n.title }}</div>
+                    <div class="news-info">
+                        <div class="time">{{ n.time }}</div>
+                        <div class="source">{{ n.source }}</div>
+                    </div>
                 </div>
             </div>
         </div>
