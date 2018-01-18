@@ -7,6 +7,9 @@ const PORT = 3000,
     DICT = {
         [`/newslist`]: {
             GET: 'data/newslist.json'
+        },
+        [`/article`]: {
+            GET: 'data/article.json'
         }
     };
 

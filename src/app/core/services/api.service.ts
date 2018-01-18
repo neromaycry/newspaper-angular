@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { News } from '../models/news.model';
+import { Article } from '../models/article.model';
 import { SERVICES } from '../constants';
 import { Store } from '@ngrx/store';
 import * as fromActions from '../actions/news.actions';
@@ -30,9 +31,25 @@ export class ApiService {
 
     loadNewsListToStore() {
         this.getNewsList()
-            .subscribe((news) => {
-                console.log('newslist:', news);
-                this.store.dispatch(new fromActions.LoadAction(news));
+            .subscribe((newslist) => {
+                console.log('newslist:', newslist);
+                this.store.dispatch(new fromActions.LoadAction(newslist));
             });
     }
+
+    getArticle(id: string): Observable<Article> {
+        return this.http
+            .get(SERVICES.article)
+            .map((res) => {
+                return res.json() as Article;
+            });
+    }
+
+    loadArticleToStore(id: string) {
+        this.getArticle(id)
+            .subscribe((article) => {
+                this.store.dispatch(new fromActions.LoadArticleAction(article));
+            });
+    }
+
 }

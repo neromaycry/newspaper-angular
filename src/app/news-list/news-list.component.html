@@ -10,7 +10,7 @@
     (scrolled)="onScrollDown()"
     (scrolledUp)="onScrollUp()">
         <div *ngFor="let n of newsList">
-            <div class="newslist-item">
+            <div class="newslist-item" (click)="ToArticle.emit(n.id)">
                 <div class="item-img-container">
                     <div class="item-img" [style.background-image]="getImg(n.img_url)"></div>
                 </div>

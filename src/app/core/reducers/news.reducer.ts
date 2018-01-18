@@ -3,14 +3,20 @@ import * as fromActions from '../actions/news.actions';
 import { NewsState } from './app.states';
 
 export const initialState: NewsState = {
-    news: []
+    newslist: [],
+    currentArticle: null
 };
 
 export function reducer(state = initialState, action: fromActions.All): NewsState {
     switch (action.type) {
-        case fromActions.ActionTypes.LOAD_NEWS: {
+        case fromActions.ActionTypes.LOAD_NEWSLIST: {
             return Object.assign({}, state, {
-                news: action.payload
+                newslist: action.payload
+            });
+        }
+        case fromActions.ActionTypes.LOAD_ARTICLE: {
+            return Object.assign({}, state, {
+                currentArticle: action.payload
             });
         }
         default: {
@@ -21,8 +27,12 @@ export function reducer(state = initialState, action: fromActions.All): NewsStat
 
 export const getNewsState = createFeatureSelector<NewsState>('newsState');
 
-export const getNews = createSelector(
+export const getNewslist = createSelector(
     getNewsState,
-    (state: NewsState) => state.news
+    (state: NewsState) => state.newslist
 );
 
+export const getArticle = createSelector(
+    getNewsState,
+    (state: NewsState) => state.currentArticle
+);

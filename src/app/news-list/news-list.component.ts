@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { News } from '../core/models/news.model';
 
@@ -9,6 +9,7 @@ import { News } from '../core/models/news.model';
 })
 export class NewsListComponent implements OnInit, AfterViewInit {
     @Input() newsList: News[];
+    @Output() ToArticle = new EventEmitter<string>();
 
     constructor(private sanitizer: DomSanitizer) {
     }
