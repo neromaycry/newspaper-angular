@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Article } from '../core/models/article.model';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'my-news-article',
@@ -8,8 +9,13 @@ import { Article } from '../core/models/article.model';
 })
 export class NewsArticleComponent implements OnInit {
     @Input() article: Article;
+    @Output() GoBack = new EventEmitter();
 
-    constructor() {
+    constructor(private sanitizer: DomSanitizer) {
+    }
+
+    getImg(image) {
+        return this.sanitizer.bypassSecurityTrustStyle(`url(${image})`);
     }
 
     ngOnInit() {

@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { Router, ParamMap, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
@@ -15,17 +16,19 @@ import { NewsState } from '../core/reducers/app.states';
     template: `
         <my-news-article
         [article]="article$ | async"
+        (GoBack)="goBack()"
         ></my-news-article>
     `
 })
-export class NewsArticleContainer implements OnInit {
+export class NewsArticleContainer implements OnInit, OnDestroy {
     article$: Observable<Article>;
 
     constructor(
         private apiService: ApiService,
         private store: Store<NewsState>,
         private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private location: Location
     ) {
         let id = this.route.snapshot.paramMap.get('id');
         this.apiService.loadArticleToStore(id);
@@ -33,8 +36,14 @@ export class NewsArticleContainer implements OnInit {
     }
 
     ngOnInit() {
-        this.article$.subscribe((article) => {
-            console.log(article);
-        });
+
+    }
+
+    ngOnDestroy() {
+
+    }
+
+    goBack() {
+        this.location.back();
     }
 }

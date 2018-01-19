@@ -29,8 +29,10 @@ _.forEach(DICT, (v, k) => {
         app[method](k, (req, res) => {
             fs.exists(file, () => {
                 fs.readFile(file, 'utf-8', (err, data) => {
-                    res.writeHead(200, { 'Content-Type': 'application/json' });
-                    res.end(data);
+                    setTimeout(() => {
+                        res.writeHead(200, { 'Content-Type': 'application/json' });
+                        res.end(data);
+                    }, 800);
                 });
             });
             console.log(_.padStart(req.method, 4, ' '), k);

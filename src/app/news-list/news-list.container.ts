@@ -33,9 +33,6 @@ export class NewsListContainer implements OnInit {
     }
 
     ngOnInit() {
-        this.newsList$.subscribe((news) => {
-            console.log(news);
-        });
     }
 
     toArticle(id) {

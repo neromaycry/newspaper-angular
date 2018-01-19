@@ -1,6 +1,18 @@
-<div>{{article.title}}</div>
-<div>{{article.time}}</div>
-<div>{{article.source}}</div>
-<div *ngFor="let p of article.content">
-    {{p}}
+<div class="article-container">
+    <div *ngIf="article">
+        <div class="action-bar">
+            <div class="btn" (click)="GoBack.emit()"></div>
+        </div>
+        <div class="article-img" [style.background-image]="getImg(article.img_url)"></div>
+        <div class="article-info">
+            {{article.source}}  -  {{article.time}}
+        </div>
+        <div class="article-title">{{article.title}}</div>
+        <div *ngFor="let p of article.content">
+            <p class="article-text">{{p}}</p>
+        </div>
+    </div>
+    <div *ngIf="!article">
+        Loading...
+    </div>
 </div>
