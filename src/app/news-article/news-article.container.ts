@@ -44,6 +44,7 @@ export class NewsArticleContainer implements OnInit, OnDestroy {
     }
 
     goBack() {
-        this.location.back();
+        this.store.dispatch(new fromActions.ClearArticleAction());
+        this.router.navigate(['newslist']);
     }
 }

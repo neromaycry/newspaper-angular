@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'app';
 
   constructor(private router: Router) {
-    this.router.navigate([{ outlets: { body: 'newslist' } }]);
+    // this.router.navigate([{ outlets: { body: 'newslist' } }], { skipLocationChange: true });
     // this.router.navigate(['newslist']);
   }
 

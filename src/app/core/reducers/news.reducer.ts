@@ -19,6 +19,11 @@ export function reducer(state = initialState, action: fromActions.All): NewsStat
                 currentArticle: action.payload
             });
         }
+        case fromActions.ActionTypes.CLEAR_ARTICLE: {
+            return Object.assign({}, state, {
+                currentArticle: null
+            });
+        }
         default: {
             return state;
         }

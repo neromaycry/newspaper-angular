@@ -3,7 +3,7 @@ let express = require('express'),
     _ = require('lodash'),
     fs = require('fs');
 
-const PORT = 3000,
+const PORT = 8001,
     DICT = {
         [`/newslist`]: {
             GET: 'data/newslist.json'

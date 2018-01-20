@@ -38,6 +38,6 @@ export class NewsListContainer implements OnInit {
     toArticle(id) {
         console.log(id);
         let url = `article/${id}`;
-        this.router.navigate([{ outlets: { body: url } }]);
+        this.router.navigate([url]);
     }
 }
