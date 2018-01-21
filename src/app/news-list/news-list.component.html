@@ -3,7 +3,7 @@
         <div class="greetings">{{ greetings }}</div>
         <div class="username">{{ user.username }}</div>
     </div>
-    <div class="newslist-container" (scroll)="onScroll($event)">
+    <div class="newslist-container" detect-scroll (onScroll)="handleScroll($event)">
         <div *ngFor="let n of newsList">
             <div class="newslist-item" (click)="ToArticle.emit(n.id)">
                 <div class="item-img-container">

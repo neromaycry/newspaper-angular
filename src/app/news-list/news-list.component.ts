@@ -9,6 +9,7 @@ import {
     animate,
     transition
 } from '@angular/animations';
+import { ScrollEvent } from '../shared/scroll';
 
 @Component({
     selector: 'my-news-list',
@@ -38,7 +39,7 @@ export class NewsListComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-        
+
     }
 
     ngAfterViewInit() {
@@ -49,16 +50,17 @@ export class NewsListComponent implements OnInit, AfterViewInit {
     }
 
     onScrollDown() {
-        console.log('scrolled down');
+        // console.log('scrolled down');
         // this.headerState = 'hide';
-        console.log(this.headerState);
+        // console.log(this.headerState);
     }
 
     onScrollUp() {
         console.log('scrolled up');
     }
 
-    onScroll(event) {
-        console.log(event);
+    public handleScroll(event: ScrollEvent) {
+        let isScrollUp = event.isScrollUp;
+        this.headerState = isScrollUp ? 'show' : 'hide';
     }
 }

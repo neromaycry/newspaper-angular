@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NewsListComponent } from './news-list.component';
 import { NewsListContainer } from './news-list.container';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ScrollEventModule } from '../shared/scroll';
 
 export const COMPONENTS = [
     NewsListComponent,
@@ -12,7 +13,8 @@ export const COMPONENTS = [
 @NgModule({
     imports: [
         CommonModule,
-        InfiniteScrollModule
+        InfiniteScrollModule,
+        ScrollEventModule
     ],
     declarations: COMPONENTS,
     exports: COMPONENTS
