@@ -25,4 +25,3 @@ export class ClearArticleAction implements Action {
 }
 
 export type All = LoadAction | LoadArticleAction;
-

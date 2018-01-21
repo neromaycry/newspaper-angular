@@ -1,10 +1,12 @@
 import { ActionReducerMap, ActionReducer, MetaReducer } from '@ngrx/store';
 import { AppState } from './app.states';
 import * as newsReducer from './news.reducer';
+import * as userReducer from './user.reducer';
 import { environment } from '../../../environments/environment';
 
 export const reducers: ActionReducerMap<AppState> = {
-  newsState: newsReducer.reducer
+  newsState: newsReducer.reducer,
+  userState: userReducer.reducer
 };
 
 export function logger(reducer: ActionReducer<AppState>): ActionReducer<AppState> {

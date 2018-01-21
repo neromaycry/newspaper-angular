@@ -10,6 +10,9 @@ const PORT = 8001,
         },
         [`/article`]: {
             GET: 'data/article.json'
+        },
+        [`/user`]: {
+            GET: 'data/user.json'
         }
     };
 

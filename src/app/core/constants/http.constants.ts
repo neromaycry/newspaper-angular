@@ -12,8 +12,10 @@ let buildServiceUrl = name => `${BASE_URL}${name}`;
 
 const NEWS_LIST = buildServiceUrl('/newslist');
 const ARTICLE = buildServiceUrl('/article');
+const USER = buildServiceUrl('/user');
 
 export const SERVICES = {
     newslist: NEWS_LIST,
-    article: ARTICLE
+    article: ARTICLE,
+    user: USER
 };

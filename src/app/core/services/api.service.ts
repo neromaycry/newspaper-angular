@@ -4,11 +4,14 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { News } from '../models/news.model';
 import { Article } from '../models/article.model';
+import { User } from '../models/user.model';
 import { SERVICES } from '../constants';
 import { Store } from '@ngrx/store';
 import * as fromActions from '../actions/news.actions';
 import * as newsReducer from '../reducers/news.reducer';
 import { NewsState } from '../reducers/app.states';
+import * as fromUserActions from '../actions/user.actions';
+import * as userReducer from '../reducers/user.reducer';
 
 @Injectable()
 export class ApiService {
@@ -50,6 +53,27 @@ export class ApiService {
             .subscribe((article) => {
                 this.store.dispatch(new fromActions.LoadArticleAction(article));
             });
+    }
+
+    getUser() {
+        return this.http
+            .get(SERVICES.user)
+            .map((res) => {
+                return res.json() as User;
+            });
+    }
+
+    loadUserToStore() {
+        this.getUser()
+            .subscribe((user) => {
+                this.store.dispatch(new fromUserActions.LoadAction(user));
+            });
+    }
+
+    loadSysTime() {
+        let now = new Date();
+        let hour = now.getHours();
+        this.store.dispatch(new fromUserActions.LoadTimeAction(hour));
     }
 
 }

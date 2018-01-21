@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 // import { StoreModule } from '@ngrx/store';
@@ -16,6 +17,7 @@ import { NewsArticleModule } from './news-article';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpModule,
     CoreModule,
     NewsListModule,

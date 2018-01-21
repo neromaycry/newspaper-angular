@@ -1,14 +1,9 @@
 <div class="newslist-container">
-    <div class="newslist-header">
-        <div class="greetings">Good Morning!</div>
-        <div class="username">neromaycry</div>
+    <div class="newslist-header" [@headerState]="headerState" *ngIf="headerState === 'show' && user">
+        <div class="greetings">{{ greetings }}</div>
+        <div class="username">{{ user.username }}</div>
     </div>
-    <div class="newslist-container" infiniteScroll
-    [infiniteScrollDistance]="2"
-    [infiniteScrollUpDistance]="1.5"
-    [infiniteScrollThrottle]="50"
-    (scrolled)="onScrollDown()"
-    (scrolledUp)="onScrollUp()">
+    <div class="newslist-container" (scroll)="onScroll($event)">
         <div *ngFor="let n of newsList">
             <div class="newslist-item" (click)="ToArticle.emit(n.id)">
                 <div class="item-img-container">
