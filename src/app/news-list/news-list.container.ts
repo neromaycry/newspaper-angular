@@ -18,8 +18,7 @@ import { Router } from '@angular/router';
         [newsList]="newsList$ | async"
         [user]="user$ | async"
         [greetings] = "greetings"
-        (ToArticle)="toArticle($event)"
-        ></my-news-list>
+        (ToArticle)="toArticle($event)"></my-news-list>
     `
 })
 export class NewsListContainer implements OnInit {
@@ -27,6 +26,7 @@ export class NewsListContainer implements OnInit {
     newsList$: Observable<News[]>;
     user$: Observable<User>;
     sysTime$: Observable<number>;
+   
     greetings = 'Good Morning!';
 
     constructor(
@@ -45,7 +45,7 @@ export class NewsListContainer implements OnInit {
 
     ngOnInit() {
         this.sysTime$.subscribe((time) => {
-            console.log(time);
+            // console.log(time);
             if (time <= 11) {
                 this.greetings = 'Good Morning!';
             } else if (time > 11 && time <= 13) {
@@ -56,11 +56,11 @@ export class NewsListContainer implements OnInit {
                 this.greetings = 'Good Evening!';
             }
         });
-        console.log(this.greetings);
+        // console.log(this.greetings);
     }
 
     toArticle(id) {
-        console.log(id);
+        // console.log(id);
         let url = `article/${id}`;
         this.router.navigate([url]);
     }

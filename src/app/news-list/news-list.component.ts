@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit, Directive, HostListener } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit, Directive, HostListener, HostBinding } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { News } from '../core/models/news.model';
 import { User } from '../core/models/user.model';
@@ -49,18 +49,12 @@ export class NewsListComponent implements OnInit, AfterViewInit {
         return this.sanitizer.bypassSecurityTrustStyle(`url(${image})`);
     }
 
-    onScrollDown() {
-        // console.log('scrolled down');
-        // this.headerState = 'hide';
-        // console.log(this.headerState);
-    }
-
-    onScrollUp() {
-        console.log('scrolled up');
-    }
-
     public handleScroll(event: ScrollEvent) {
+        // console.log(event.originalEvent);
         let isScrollUp = event.isScrollUp;
-        this.headerState = isScrollUp ? 'show' : 'hide';
+        if (event.scrollTop > 128) {
+            // console.log(isScrollUp);
+            this.headerState = isScrollUp ? 'show' : 'hide';
+        }
     }
 }

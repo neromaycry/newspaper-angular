@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+// import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { BusyModule } from 'angular2-busy';
 // import { StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
@@ -18,7 +20,8 @@ import { NewsArticleModule } from './news-article';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpModule,
+    BusyModule,
+    HttpClientModule,
     CoreModule,
     NewsListModule,
     NewsArticleModule,

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+// import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http'
 import { News } from '../models/news.model';
 import { Article } from '../models/article.model';
 import { User } from '../models/user.model';
@@ -9,68 +8,40 @@ import { SERVICES } from '../constants';
 import { Store } from '@ngrx/store';
 import * as fromActions from '../actions/news.actions';
 import * as newsReducer from '../reducers/news.reducer';
-import { NewsState } from '../reducers/app.states';
+import { AppState } from '../reducers/app.states';
 import * as fromUserActions from '../actions/user.actions';
 import * as userReducer from '../reducers/user.reducer';
+import { Subscription } from 'rxjs/Subscription';
 
 @Injectable()
 export class ApiService {
 
     constructor(
-        private http: Http,
-        private store: Store<NewsState>
+        private http: HttpClient,
+        private store: Store<AppState>
     ) {
 
     }
 
-    getNewsList(): Observable<News[]> {
-        return this.http
-            .get(SERVICES.newslist)
-            .map((res) => {
-                // console.log(res);
-                return res.json() as News[];
-            });
+    loadNewsListToStore(): Subscription {
+        return this.http.get(SERVICES.newslist).subscribe((newslist: News[]) => {
+            this.store.dispatch(new fromActions.LoadAction(newslist));
+        });
     }
 
-    loadNewsListToStore() {
-        this.getNewsList()
-            .subscribe((newslist) => {
-                console.log('newslist:', newslist);
-                this.store.dispatch(new fromActions.LoadAction(newslist));
-            });
+    loadArticleToStore(id: string): Subscription {
+        return this.http.get(SERVICES.article).subscribe((article: Article) => {
+            this.store.dispatch(new fromActions.LoadArticleAction(article));
+        });
     }
 
-    getArticle(id: string): Observable<Article> {
-        return this.http
-            .get(SERVICES.article)
-            .map((res) => {
-                return res.json() as Article;
-            });
+    loadUserToStore(): Subscription {
+        return this.http.get(SERVICES.user).subscribe((user: User) => {
+            this.store.dispatch(new fromUserActions.LoadAction(user));
+        });
     }
 
-    loadArticleToStore(id: string) {
-        this.getArticle(id)
-            .subscribe((article) => {
-                this.store.dispatch(new fromActions.LoadArticleAction(article));
-            });
-    }
-
-    getUser() {
-        return this.http
-            .get(SERVICES.user)
-            .map((res) => {
-                return res.json() as User;
-            });
-    }
-
-    loadUserToStore() {
-        this.getUser()
-            .subscribe((user) => {
-                this.store.dispatch(new fromUserActions.LoadAction(user));
-            });
-    }
-
-    loadSysTime() {
+    loadSysTime(): void {
         let now = new Date();
         let hour = now.getHours();
         this.store.dispatch(new fromUserActions.LoadTimeAction(hour));

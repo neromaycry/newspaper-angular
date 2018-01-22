@@ -4,7 +4,8 @@ export type ScrollEvent = {
     originalEvent: Event,
     isReachingBottom: boolean,
     isWindowEvent: boolean,
-    isScrollUp: boolean
+    isScrollUp: boolean,
+    scrollTop: number;
 };
 
 declare const window: Window;
@@ -34,11 +35,11 @@ export class ScrollDirective {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
         const isReachingBottom = (target.body.offsetHeight - (window.innerHeight + scrollTop)) < this.bottomOffset;
         const isScrollUp = this.lastDistance > scrollTop;
-        const emitValue: ScrollEvent = { isReachingBottom, originalEvent: $event, isWindowEvent: true, isScrollUp };
+        const emitValue: ScrollEvent = { isReachingBottom, originalEvent: $event, isWindowEvent: true, isScrollUp, scrollTop };
         this.onScroll.emit(emitValue);
-        setTimeout(()=>{
+        setTimeout(() => {
             this.lastDistance = scrollTop;
-        },0);
+        }, 0);
     }
 
     protected elementScrollEvent($event: Event) {
@@ -47,12 +48,12 @@ export class ScrollDirective {
         const offsetHeight = target.offsetHeight;
         const isReachingBottom = (scrollPosition - offsetHeight) < this.bottomOffset;
         const isScrollUp = this.lastDistance > target.scrollTop;
-        const emitValue: ScrollEvent = { isReachingBottom, originalEvent: $event, isWindowEvent: false, isScrollUp };
+        const emitValue: ScrollEvent = { isReachingBottom, originalEvent: $event, isWindowEvent: false, isScrollUp, scrollTop: target.scrollTop };
         this.onScroll.emit(emitValue);
         this.onScroll.emit(emitValue);
-        setTimeout(()=>{
+        setTimeout(() => {
             this.lastDistance = target.scrollTop;
-        },0);
+        }, 0);
     }
 
 }
