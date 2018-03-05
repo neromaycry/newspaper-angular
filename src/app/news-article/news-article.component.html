@@ -5,7 +5,7 @@
         </div>
         <div class="article-img" [style.background-image]="getImg(article.img_url)"></div>
         <div class="article-info">
-            {{article.source}}  -  {{article.time}}
+            {{article.source}} - {{article.time}}
         </div>
         <div class="article-title">{{article.title}}</div>
         <div *ngFor="let p of article.content">
@@ -13,6 +13,17 @@
         </div>
     </div>
     <div *ngIf="!article">
-        Loading...
+        <div class="loading-img"></div>
+        <div class="loading-info">
+            
+        </div>
+        <div class="loading-title"></div>
+        <div>
+            <p class="loading-text indent"></p>
+            <p class="loading-text"></p>
+            <p class="loading-text"></p>
+            <p class="loading-text"></p>
+            <p class="loading-text last"></p>
+        </div>
     </div>
 </div>
